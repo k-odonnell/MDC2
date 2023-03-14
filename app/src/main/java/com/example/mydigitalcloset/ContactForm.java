@@ -1,24 +1,27 @@
 package com.example.mydigitalcloset;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.widget.Button;
-
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
+
 import com.example.mydigitalcloset.databinding.ActivityClothingFrontBinding;
-import com.example.mydigitalcloset.databinding.ActivityOutfitCreationBinding;
+import com.example.mydigitalcloset.databinding.ActivityContactFormBinding;
 
-public class clothingFront extends AppCompatActivity {
+public class ContactForm extends AppCompatActivity {
 
-    ActivityClothingFrontBinding binding;
+    ActivityContactFormBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         //NAV BAR STUFF:
-        binding = ActivityClothingFrontBinding.inflate(getLayoutInflater());
+        binding = ActivityContactFormBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
@@ -49,12 +52,25 @@ public class clothingFront extends AppCompatActivity {
         });
         //end nav bar
 
-        setContentView(R.layout.activity_clothing_front);
-        //this moves to the page that adds clothing items
-        Button addPage = findViewById(R.id.addItem);
-        addPage.setOnClickListener(view -> {
-            Intent intent=new Intent(clothingFront.this,clothingUpload.class);
-            startActivity(intent);
+
+        setContentView(R.layout.activity_contact_form);
+
+        Button btn = findViewById(R.id.btnsubmit);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                openSuccessPage();
+
+                Log.i("MyDigitalCloset", "Your form has been successfully summited");
+                //Shows summited on the bottom of the screen
+                Toast.makeText(getApplicationContext(), "Summited!", Toast.LENGTH_SHORT)
+                        .show();
+            }
         });
+    }
+    public void openSuccessPage(){
+        Intent intent = new Intent(this, SuccessPage.class);
+        startActivity(intent);
     }
 }
