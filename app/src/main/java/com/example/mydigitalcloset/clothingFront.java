@@ -7,7 +7,7 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.mydigitalcloset.databinding.ActivityClothingFrontBinding;
-import com.example.mydigitalcloset.databinding.ActivityOutfitCreationBinding;
+
 
 public class clothingFront extends AppCompatActivity {
 
